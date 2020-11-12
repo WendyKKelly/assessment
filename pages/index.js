@@ -5,8 +5,18 @@ const Assessment = ({}) => {
 
 	const step1 = () => {
 		const matches = ({ firstObj, secondObj }) => {
-			// Fill in solution here
-			return null
+			const firstObjKeys =  Object.keys(firstObj)
+			const secondObjKeys =  Object.keys(secondObj)
+			if(firstObjKeys.toString() !== secondObjKeys.toString()){
+				return(false)
+			}
+			for(var i=0; i < firstObjKeys.length; i++){
+				let key = firstObjKeys[i]
+				if(firstObj[key] !== secondObj[key]){
+					return(false)
+				}
+			}
+			return(true)
 		}
 
 		const obj1 = { age: 25, hair: 'long', beard: true }
@@ -26,8 +36,12 @@ const Assessment = ({}) => {
 
 	const step2 = () => {
 		const remove = ({ array, values }) => {
-			// Fill in solution here
-			return null
+			values.forEach(item => {
+				if(array.indexOf(item) !== -1){ // saves memory
+					array = array.filter(val => val !== item )
+				}
+			})
+			return array
 		}
 		const values = ['e', 'h', 'z']
 		const array1 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
@@ -43,11 +57,14 @@ const Assessment = ({}) => {
 	 * #3. Write a function to generate a random hexadecimal color code.
 	 */
 	const step3 = () => {
+		const colorArr = [1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F']
 		const hex = () => {
-			// Fill in solution here; feel free to look up hexadecimal codes on the internet, but don’t look up a code solution
-			return null
+			let hexCode = ['#']
+			for(var i=0; i < 6; i++){
+				hexCode.push(colorArr[Math.floor(Math.random()*15)])
+			}
+			return hexCode.join("")
 		}
-
 		console.log(hex())
 	}
 
@@ -59,8 +76,32 @@ const Assessment = ({}) => {
 
 	const step4 = () => {
 		const luhn = input => {
-			// Fill in solution here; feel free to look up Luhn Algorithm and how it works mathematically, but don’t look up a code solution
-			return null
+			if(typeof input == 'string' && input.indexOf(' ') !== -1){  
+			//might have been good to remove tabs and other white space as well
+				input = input.replace(/ /g, '')
+			}
+			let inputArray = Array.from(input.toString())
+			inputArray = inputArray.map(Number)
+			const weightedArrray = [] 
+			for(var i=0; i < inputArray.length; i++){
+				if ( (i % 2) !== 0){
+					weightedArrray.push(inputArray[i])
+				}
+				else{
+					const doubled = inputArray[i]*2
+					if( doubled  > 9){
+						weightedArrray.push(doubled-9)
+					}
+					else {
+						weightedArrray.push(doubled)
+					}
+				}
+			}
+			const checkSum = weightedArrray.reduce((sum, item) => sum  + item )
+			if( (checkSum %10) == 0){
+				return(true)
+			}
+			return(false)
 		}
 
 		console.log(luhn('5221320000307276'))
