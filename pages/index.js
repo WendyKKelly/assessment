@@ -95,6 +95,7 @@ step1();
 	step4()
 
 	return <h1>Open developer console to read logs.</h1>
+  }
 }
 
 export default Assessment
