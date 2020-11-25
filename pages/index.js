@@ -7,6 +7,7 @@ const Assessment = ({}) => {
 		const matches = ({ firstObj, secondObj }) => {
 				const fkey = Object.keys(firstObj);
 				return fkey.every(key => firstObj[key] === secondObj[key]);
+				
 		}
 
 		const person1 = { age: 25, hair: 'long', beard: true };
@@ -24,7 +25,7 @@ const Assessment = ({}) => {
 
 }
 
-step1();
+
 
 	step1()
 
@@ -58,11 +59,11 @@ step1();
 	const step3 = () => {
 		const hex = () => {
 			// Fill in solution here; feel free to look up hexadecimal codes on the internet, but don’t look up a code solution
-			const random = Math.floor(Math.random()*255*255*255).toString(16);
+			let random = Math.floor(Math.random()*255*255*255).toString(16);
 			    if(random.length !== 6) {
             return false;
          } else if(random.length === 6) {
-            return proper = "#" + random;
+            return random = "#" + random;
 	 }
 }
      console.log(hex())
@@ -91,11 +92,12 @@ step1();
 			  console.log(luhn('4242 4242 4242 4242'))
 			  console.log(luhn('79927398713'))
 			  console.log(luhn(4485275742308327))
+	}
 
 	step4()
 
 	return <h1>Open developer console to read logs.</h1>
   }
-}
+
 
 export default Assessment
